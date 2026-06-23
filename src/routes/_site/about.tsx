@@ -1,29 +1,9 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import lab from "@/assets/about-lab.jpg";
 import advisor from "@/assets/dr-kumud-ranjan.jpg";
 import { Section, SectionTitle } from "@/components/site/Section";
 import { SITE } from "@/lib/site";
-
-export const Route = createFileRoute("/_site/about")({
-  head: () => ({
-    meta: [
-      { title: "About TEKSYS · Semiconductor & Defence Technology" },
-      {
-        name: "description",
-        content:
-          "TEKSYS supports industry, academia, startups and government with semiconductor consulting, MMIC design and workforce development across India, Singapore and the USA.",
-      },
-      { property: "og:title", content: "About TEKSYS" },
-      {
-        property: "og:description",
-        content:
-          "Founded by experienced defence and semiconductor technologists — combining engineering services with skill development.",
-      },
-    ],
-  }),
-  component: AboutPage,
-});
 
 function AboutPage() {
   return (
@@ -137,3 +117,5 @@ function AboutPage() {
     </>
   );
 }
+
+export default AboutPage;

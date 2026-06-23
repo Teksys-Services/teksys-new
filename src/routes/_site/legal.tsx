@@ -1,16 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { Section } from "@/components/site/Section";
 import { SITE } from "@/lib/site";
-
-export const Route = createFileRoute("/_site/legal")({
-  head: () => ({
-    meta: [
-      { title: "Legal · Privacy, Terms & Cookies · TEKSYS" },
-      { name: "description", content: "Privacy Policy, Terms of Service and Cookie Policy for TEKSYS Services." },
-    ],
-  }),
-  component: LegalPage,
-});
 
 function LegalPage() {
   return (
@@ -51,3 +40,5 @@ function LegalPage() {
     </Section>
   );
 }
+
+export default LegalPage;

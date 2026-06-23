@@ -1,28 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { Mail, Phone, MapPin, Globe2 } from "lucide-react";
 import { ContactForm } from "@/components/site/ContactForm";
 import { Section, SectionTitle } from "@/components/site/Section";
 import { SITE } from "@/lib/site";
-
-export const Route = createFileRoute("/_site/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact TEKSYS · Get in touch" },
-      {
-        name: "description",
-        content:
-          "Talk to TEKSYS about GaN/SiC consulting, MMIC design, semiconductor training and engineering programs. Offices across India, Singapore and the USA.",
-      },
-      { property: "og:title", content: "Contact TEKSYS" },
-      {
-        property: "og:description",
-        content:
-          "Reach our engineering team for semiconductor consulting, MMIC design and training programs.",
-      },
-    ],
-  }),
-  component: ContactPage,
-});
 
 function ContactPage() {
   return (
@@ -105,3 +84,5 @@ function ContactPage() {
     </>
   );
 }
+
+export default ContactPage;

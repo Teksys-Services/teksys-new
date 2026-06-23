@@ -1,1 +1,0 @@
-var e=`/assets/dr-kumud-ranjan-CUwFlxgS.jpg`;export{e as t};

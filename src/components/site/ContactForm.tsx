@@ -1,8 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { useState, useRef } from "react";
-import { useServerFn } from "@tanstack/react-start";
 import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
-import { sendContact } from "@/lib/contact.functions";
 
 type Props = {
   source?: "contact" | "enroll" | "service";
@@ -11,8 +9,18 @@ type Props = {
   title?: string;
 };
 
+type ContactInput = {
+  name: string;
+  email: string;
+  phone?: string;
+  company?: string;
+  subject?: string;
+  topic?: string;
+  message: string;
+  source: "contact" | "enroll" | "service";
+};
+
 export function ContactForm({ source = "contact", topic, compact, title }: Props) {
-  const submit = useServerFn(sendContact);
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
@@ -22,21 +30,32 @@ export function ContactForm({ source = "contact", topic, compact, title }: Props
     setStatus("loading");
     setError(null);
     const fd = new FormData(e.currentTarget);
-    const payload = {
+    const payload: ContactInput = {
       name: String(fd.get("name") || ""),
       email: String(fd.get("email") || ""),
-      phone: String(fd.get("phone") || ""),
-      company: String(fd.get("company") || ""),
-      subject: String(fd.get("subject") || ""),
-      topic: topic || String(fd.get("topic") || ""),
+      phone: String(fd.get("phone") || "") || undefined,
+      company: String(fd.get("company") || "") || undefined,
+      subject: String(fd.get("subject") || "") || undefined,
+      topic: topic || String(fd.get("topic") || "") || undefined,
       message: String(fd.get("message") || ""),
-      source,
+      source: source as "contact" | "enroll" | "service",
     };
+
     try {
-      const result = await submit({ data: payload });
-      if (!result.ok) {
+      // Send to API endpoint (configure your backend URL)
+      const apiUrl = process.env.REACT_APP_API_URL || "/api";
+      const response = await fetch(`${apiUrl}/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ data: payload }),
+      });
+
+      const result = await response.json();
+      if (!response.ok) {
         setStatus("error");
-        setError(result.error);
+        setError(result.error || "Something went wrong. Please try again.");
         return;
       }
       setStatus("success");

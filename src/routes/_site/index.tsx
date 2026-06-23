@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -31,26 +31,6 @@ import { SERVICES, COURSES, SITE } from "@/lib/site";
 import { Section, SectionTitle, SectionEyebrow } from "@/components/site/Section";
 
 const ICONS = { Cpu, Zap, Layers, GraduationCap, Wrench, Microscope } as const;
-
-export const Route = createFileRoute("/_site/")({
-  head: () => ({
-    meta: [
-      { title: "TEKSYS · Semiconductor, Defence & Advanced Technology Solutions" },
-      {
-        name: "description",
-        content:
-          "TEKSYS delivers GaN/SiC consulting, fabless MMIC design and semiconductor skill training for industry, defence, academia and government — across India, Singapore and the USA.",
-      },
-      { property: "og:title", content: "TEKSYS · Semiconductor & Advanced Technology Solutions" },
-      {
-        property: "og:description",
-        content:
-          "GaN/SiC technology consulting, fabless MMIC design, and a global semiconductor skill training academy.",
-      },
-    ],
-  }),
-  component: Home,
-});
 
 function Home() {
   return (
@@ -232,8 +212,7 @@ function ServicesPreview() {
                 ))}
               </ul>
               <Link
-                to="/services"
-                hash={s.slug}
+                to={`/services#${s.slug}`}
                 className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-primary"
               >
                 Learn more <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
@@ -294,8 +273,7 @@ function TrainingPreview() {
             return (
               <Link
                 key={course.slug}
-                to="/training"
-                hash={course.slug}
+                to={`/training#${course.slug}`}
                 className="flex flex-col rounded-2xl border border-border bg-card p-6 transition hover:shadow-lg hover:border-primary/50"
               >
                 {/* Number Circle */}
@@ -472,3 +450,5 @@ function CTA() {
     </Section>
   );
 }
+
+export default Home;
