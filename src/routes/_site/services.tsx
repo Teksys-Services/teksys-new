@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   Cpu, Zap, Layers, GraduationCap, Wrench, Microscope, CheckCircle2, ArrowRight,
@@ -7,26 +7,6 @@ import { SERVICES } from "@/lib/site";
 import { Section, SectionTitle } from "@/components/site/Section";
 
 const ICONS = { Cpu, Zap, Layers, GraduationCap, Wrench, Microscope } as const;
-
-export const Route = createFileRoute("/_site/services")({
-  head: () => ({
-    meta: [
-      { title: "Services · TEKSYS" },
-      {
-        name: "description",
-        content:
-          "GaN consulting, SiC power, fabless MMIC design, semiconductor training and OSAT lab partnerships — full-stack engineering services from TEKSYS.",
-      },
-      { property: "og:title", content: "TEKSYS Services" },
-      {
-        property: "og:description",
-        content:
-          "End-to-end semiconductor engineering: GaN, SiC, MMIC design, training and process labs.",
-      },
-    ],
-  }),
-  component: ServicesPage,
-});
 
 function ServicesPage() {
   return (
@@ -89,3 +69,5 @@ function ServicesPage() {
     </>
   );
 }
+
+export default ServicesPage;

@@ -2,6 +2,8 @@ import { Outlet } from "react-router-dom";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { TopBar } from "@/components/site/TopBar";
+import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
+import { ChatBot } from "@/components/site/ChatBot";
 
 function SiteLayout() {
   return (
@@ -12,9 +14,10 @@ function SiteLayout() {
         <Outlet />
       </main>
       <Footer />
+      <FloatingWhatsApp />
+      <ChatBot />
     </div>
   );
 }
 
 export default SiteLayout;
-}

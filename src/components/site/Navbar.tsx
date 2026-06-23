@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -41,17 +41,16 @@ export function Navbar() {
           {NAV.map((item) => {
             const isServices = item.label === "Services";
             return (
-              <Link
+              <NavLink
                 key={item.to}
                 to={item.to}
-                className="group relative inline-flex items-center gap-1 py-2 text-[15px] font-medium text-foreground/80 transition-colors hover:text-primary"
-                activeProps={{ className: "!text-primary" }}
-                activeOptions={{ exact: item.to === "/" }}
+                end={item.to === "/"}
+                className={({ isActive }) => `group relative inline-flex items-center gap-1 py-2 text-[15px] font-medium transition-colors ${isActive ? "!text-primary" : "text-foreground/80 hover:text-primary"}`}
               >
                 {item.label}
                 {isServices && <ChevronDown className="h-3.5 w-3.5" />}
                 <span className="absolute -bottom-0.5 left-0 h-0.5 w-full origin-center scale-x-0 bg-primary transition-transform group-[.active]:scale-x-100 group-aria-[current=page]:scale-x-100" />
-              </Link>
+              </NavLink>
             );
           })}
         </nav>

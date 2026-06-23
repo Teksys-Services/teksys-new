@@ -1,30 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { GraduationCap, Globe2, ShieldCheck, Users } from "lucide-react";
 import classroom from "@/assets/training-classroom.jpg";
 import { COURSES } from "@/lib/site";
 import { Section, SectionTitle, SectionEyebrow } from "@/components/site/Section";
 import { ContactForm } from "@/components/site/ContactForm";
-
-export const Route = createFileRoute("/_site/training")({
-  head: () => ({
-    meta: [
-      { title: "Semiconductor Skill Training Academy · TEKSYS" },
-      {
-        name: "description",
-        content:
-          "Eight industry-led semiconductor programs — GaN, SiC, RF, sensors, power electronics and more — with hands-on labs, global certification and placement assistance.",
-      },
-      { property: "og:title", content: "TEKSYS Semiconductor Training Academy" },
-      {
-        property: "og:description",
-        content:
-          "Industry expert faculty, hands-on labs, global certification with TechDataX, placement assistance and flexible learning.",
-      },
-    ],
-  }),
-  component: TrainingPage,
-});
 
 function TrainingPage() {
   const [requestSlug, setRequestSlug] = useState<string | null>(null);
@@ -186,3 +165,5 @@ function TrainingPage() {
     </>
   );
 }
+
+export default TrainingPage;
